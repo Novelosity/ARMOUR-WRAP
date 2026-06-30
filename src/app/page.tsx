@@ -79,13 +79,15 @@ export default function Home() {
       {/* Loading screen */}
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
 
+      {/* Cursor lives outside the opacity wrapper so it tracks mouse immediately */}
+      {!isMobile && !prefersReduced && <CustomCursor />}
+
       {/* Site shell — invisible until loaded */}
       <div
         className="transition-opacity duration-700"
         style={{ opacity: loaded ? 1 : 0, pointerEvents: loaded ? 'auto' : 'none' }}
       >
         {/* ── Global persistent UI ── */}
-        {!isMobile && !prefersReduced && <CustomCursor />}
         <ScrollProgress />
         <Navbar />
 

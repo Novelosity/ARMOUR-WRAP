@@ -46,25 +46,26 @@ body {
 
 /* ─── Custom Cursor ───────────────────────────────────── */
 .cursor-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--gold);
   border-radius: 50%;
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
+  /* GSAP owns the transform (x/y + xPercent/yPercent) — no CSS transform here */
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 8px rgba(212,175,55,0.8);
 }
 .cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(212,175,55,0.5);
+  width: 38px; height: 38px;
+  border: 1.5px solid rgba(212,175,55,0.55);
   border-radius: 50%;
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;
+  /* GSAP owns the transform */
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.25s ease, border-color 0.25s ease;
 }
-.cursor-dot.hovering  { width: 18px; height: 18px; background: var(--blue); }
-.cursor-ring.hovering { transform: translate(-50%, -50%) scale(1.8); opacity: 0.3; }
+.cursor-dot.hovering  { width: 20px; height: 20px; background: var(--blue); box-shadow: 0 0 14px rgba(0,163,255,0.9); }
+.cursor-ring.hovering { border-color: rgba(0,163,255,0.5); opacity: 0.45; }
 
 /* ─── Scrollbar ──────────────────────────────────────── */
 ::-webkit-scrollbar { width: 2px; }

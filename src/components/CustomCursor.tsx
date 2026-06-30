@@ -12,13 +12,17 @@ export default function CustomCursor() {
     const ring = ringRef.current
     if (!dot || !ring) return
 
+    // Set centering once — GSAP combines xPercent/yPercent with x/y correctly
+    gsap.set(dot,  { xPercent: -50, yPercent: -50 })
+    gsap.set(ring, { xPercent: -50, yPercent: -50 })
+
     let rafId: number
 
     const onMouseMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafId)
       rafId = requestAnimationFrame(() => {
         gsap.set(dot, { x: e.clientX, y: e.clientY })
-        gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.22, ease: 'power2.out' })
+        gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.28, ease: 'power3.out' })
       })
     }
 
